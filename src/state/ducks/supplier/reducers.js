@@ -4,7 +4,7 @@ import {
     FETCH_SUPPLIER_SUCCESS,
     FETCH_SUPPLIER_FAILURE
   } from "./actions";
-  import Utility from "../../../Utility/Pagination";
+  import Utility from "../../../utility/pagination";
   
   const INITIAL_STATE_SUPPLIER = {
     supplierList: {

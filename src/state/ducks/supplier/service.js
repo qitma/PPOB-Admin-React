@@ -1,4 +1,4 @@
-import Utility from "../../../Utility/Pagination";
+import Utility from "../../../utility/pagination";
 
 export const fakeFetchSuppliers = page => {
     const request = JSON.parse(localStorage.getItem("Suppliers"));
