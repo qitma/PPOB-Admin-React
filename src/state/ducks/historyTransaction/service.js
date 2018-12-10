@@ -1,7 +1,7 @@
 import Utility from "../../../utility/pagination";
 
-export const fakeFetchSuppliers = page => {
-  const request = JSON.parse(localStorage.getItem("Suppliers"));
+export const fakeFetchHistoryTransactions = page => {
+  const request = JSON.parse(localStorage.getItem("HistoryTransactions"));
   //console.log(page)
   //console.log(request)
   let newData = Utility.getDataByPage(request, page.page, page.size);
@@ -16,5 +16,5 @@ export const fakeFetchSuppliers = page => {
 };
 
 export default {
-  fakeFetchSuppliers
+  fakeFetchHistoryTransactions
 };

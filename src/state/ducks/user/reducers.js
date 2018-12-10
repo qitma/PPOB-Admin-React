@@ -3,9 +3,9 @@ import types from "./types";
 import Utility from "../../../utility/pagination";
 import Page from "../../../utility/page";
 
-const INITIAL_STATE_SUPPLIER = {
-  supplierList: {
-    suppliers: [],
+const INITIAL_STATE_USER = {
+  userList: {
+    users: [],
     error: null,
     loading: false,
     page: {
@@ -14,26 +14,26 @@ const INITIAL_STATE_SUPPLIER = {
   }
 };
 
-const fetchSupplier = (state = INITIAL_STATE_SUPPLIER, action) => {
+const fetchUser = (state = INITIAL_STATE_USER, action) => {
   let error;
   switch (action.type) {
-    case types.FETCH_SUPPLIER:
+    case types.FETCH_USER:
       return {
         ...state,
-        supplierList: {
-          ...state.supplierList,
-          // suppliers: [],
+        userList: {
+          ...state.userList,
+          // users: [],
           error: null,
           loading: true
         }
       };
-    case types.FETCH_SUPPLIER_SUCCESS: {
+    case types.FETCH_USER_SUCCESS: {
       let page = action.payload.page;
       page.pageCount = Utility.getCountPage(page.count, page.size);
       return {
         ...state,
-        supplierList: {
-          suppliers: action.payload.data,
+        userList: {
+          users: action.payload.data,
           error: null,
           loading: false,
           page: action.payload.page
@@ -41,13 +41,13 @@ const fetchSupplier = (state = INITIAL_STATE_SUPPLIER, action) => {
       };
     }
 
-    case types.FETCH_SUPPLIER_FAILURE:
+    case types.FETCH_USER_FAILURE:
       error = action.payload || { message: action.payload.message };
       return {
         ...state,
-        supplierList: {
-          ...state.supplierList,
-          suppliers: [],
+        userList: {
+          ...state.userList,
+          users: [],
           error: error,
           loading: false
         }
@@ -57,8 +57,8 @@ const fetchSupplier = (state = INITIAL_STATE_SUPPLIER, action) => {
   }
 };
 
-const supplierReducer = combineReducers({
-  fetchSupplier: fetchSupplier
+const userReducer = combineReducers({
+  fetchUser: fetchUser
 });
 
-export default supplierReducer;
+export default userReducer;

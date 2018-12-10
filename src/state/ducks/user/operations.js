@@ -1,7 +1,7 @@
 import actions from "./actions";
-import { fakeFetchSuppliers } from "./service";
+import { fakeFetchUsers } from "./service";
 
-export function fetchSuppliers(page) {
+export function fetchUsers(page) {
   //api version
   // const request = axios({
   //   method: "get",
@@ -11,18 +11,18 @@ export function fetchSuppliers(page) {
   //localStorage version
   //console.log(page)
   return dispatch => {
-    dispatch(actions.fetchSupplierStart());
+    dispatch(actions.fetchUserStart());
 
-    return fakeFetchSuppliers(page)
+    return fakeFetchUsers(page)
       .then(response => {
         //console.log(response)
-        dispatch(actions.fetchSupplierSuccess(response));
+        dispatch(actions.fetchUserSuccess(response));
       })
       .catch(error => {
-        dispatch(actions.fetchSupplierFailure(error));
+        dispatch(actions.fetchUserFailure(error));
       });
   };
 }
 export default {
-  fetchSuppliers
+  fetchUsers
 };

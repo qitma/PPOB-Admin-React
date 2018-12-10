@@ -46,6 +46,7 @@ class App extends Component {
             <Route path="/" name="Home" component={DefaultLayout} />
           </Switch>
       </HashRouter>
+
     );
   }
 }

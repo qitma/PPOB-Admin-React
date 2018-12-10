@@ -3,9 +3,9 @@ import types from "./types";
 import Utility from "../../../utility/pagination";
 import Page from "../../../utility/page";
 
-const INITIAL_STATE_SUPPLIER = {
-  supplierList: {
-    suppliers: [],
+const INITIAL_STATE_HISTORY_TRANSACTION = {
+  historyTransactionList: {
+    historyTransactions: [],
     error: null,
     loading: false,
     page: {
@@ -14,26 +14,29 @@ const INITIAL_STATE_SUPPLIER = {
   }
 };
 
-const fetchSupplier = (state = INITIAL_STATE_SUPPLIER, action) => {
+const fetchHistoryTransaction = (
+  state = INITIAL_STATE_HISTORY_TRANSACTION,
+  action
+) => {
   let error;
   switch (action.type) {
-    case types.FETCH_SUPPLIER:
+    case types.FETCH_HISTORY_TRANSACTION:
       return {
         ...state,
-        supplierList: {
-          ...state.supplierList,
-          // suppliers: [],
+        historyTransactionList: {
+          ...state.historyTransactionList,
+          // historyTransactions: [],
           error: null,
           loading: true
         }
       };
-    case types.FETCH_SUPPLIER_SUCCESS: {
+    case types.FETCH_HISTORY_TRANSACTION_SUCCESS: {
       let page = action.payload.page;
       page.pageCount = Utility.getCountPage(page.count, page.size);
       return {
         ...state,
-        supplierList: {
-          suppliers: action.payload.data,
+        historyTransactionList: {
+          historyTransactions: action.payload.data,
           error: null,
           loading: false,
           page: action.payload.page
@@ -41,13 +44,13 @@ const fetchSupplier = (state = INITIAL_STATE_SUPPLIER, action) => {
       };
     }
 
-    case types.FETCH_SUPPLIER_FAILURE:
+    case types.FETCH_HISTORY_TRANSACTION_FAILURE:
       error = action.payload || { message: action.payload.message };
       return {
         ...state,
-        supplierList: {
-          ...state.supplierList,
-          suppliers: [],
+        historyTransactionList: {
+          ...state.historyTransactionList,
+          historyTransactions: [],
           error: error,
           loading: false
         }
@@ -57,8 +60,8 @@ const fetchSupplier = (state = INITIAL_STATE_SUPPLIER, action) => {
   }
 };
 
-const supplierReducer = combineReducers({
-  fetchSupplier: fetchSupplier
+const historyTransactionReducer = combineReducers({
+  fetchHistoryTransaction: fetchHistoryTransaction
 });
 
-export default supplierReducer;
+export default historyTransactionReducer;
