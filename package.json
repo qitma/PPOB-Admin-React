@@ -41,7 +41,7 @@
     "react-thunk": "^1.0.0",
     "reactstrap": "^6.5.0",
     "redux": "^4.0.1",
-    "redux-modal": "^2.0.4",
+    "redux-modal": "^2.0.1",
     "redux-thunk": "^2.3.0",
     "simple-line-icons": "^2.4.1"
   },
