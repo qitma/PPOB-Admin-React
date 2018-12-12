@@ -15,6 +15,22 @@ const INITIAL_STATE_PROMO_GROUP = {
   }
 };
 
+const INITIAL_STATE_CREATE_PROMO_GROUP = {
+  newPromoGroup: {
+    promoGroup: {
+      id: 0,
+      name: "",
+      markup: 0,
+      minimumDeposit: 20,
+      minimumTransaction: 0,
+      minimumTransfer: 0,
+      description: ""
+    },
+    error: null,
+    loading: false
+  }
+};
+
 const checkUnSelected = promoGroups => {
   return promoGroups.filter(x => x.selected === false).length > 0;
 };
@@ -99,8 +115,62 @@ const fetchPromoGroup = (state = INITIAL_STATE_PROMO_GROUP, action) => {
   }
 };
 
+const createPromoGroup = (state = INITIAL_STATE_CREATE_PROMO_GROUP, action) => {
+  let data, error;
+  switch (action.type) {
+    case types.CREATE_PROMO_GROUP:
+      return {
+        ...state,
+        newPromoGroup: {
+          promoGroup: {
+            id: 0,
+            name: "",
+            markup: 0,
+            minimumDeposit: 0,
+            minimumTransaction: 0,
+            minimumTransfer: 0,
+            description: ""
+          },
+          error: null,
+          loading: true
+        }
+      };
+    case types.CREATE_PROMO_GROUP_SUCCESS:
+      data = action.payload.data || action.payload;
+      return {
+        ...state,
+        newPromoGroup: {
+          promoGroup: data,
+          error: null,
+          loading: false
+        }
+      };
+    case types.CREATE_PROMO_GROUP_FAILURE:
+      error = action.payload || { message: action.payload.message };
+      return {
+        ...state,
+        newPromoGroup: {
+          promoGroup: {
+            id: 0,
+            name: "",
+            markup: 0,
+            minimumDeposit: 0,
+            minimumTransaction: 0,
+            minimumTransfer: 0,
+            description: ""
+          },
+          error: error,
+          loading: false
+        }
+      };
+    default:
+      return state;
+  }
+};
+
 const promoGroupReducer = combineReducers({
-  fetchPromoGroup: fetchPromoGroup
+  fetchPromoGroup: fetchPromoGroup,
+  createPromoGroup: createPromoGroup
 });
 
 export default promoGroupReducer;

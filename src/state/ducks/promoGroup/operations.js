@@ -1,5 +1,5 @@
 import actions from "./actions";
-import { fakeFetchPromoGroups } from "./service";
+import { fakeFetchPromoGroups, fakeCreatePromoGroups } from "./service";
 
 function addSelectedProperty(data) {
   //console.log(data);
@@ -51,8 +51,30 @@ export const updateAllSelectedPromoGroup = () => {
   };
 };
 
+export function createPromoGroup(post) {
+  //api version
+  // const request = axios({
+  //   method: "get",
+  //   url: `${BASE_URL}/promoGroup-transaction`,
+  //   headers: ""
+  // });
+  //localStorage version
+  return dispatch => {
+    dispatch(actions.createPromoGroupStart());
+
+    return fakeCreatePromoGroups(post)
+      .then(response => {
+        dispatch(actions.createPromoGroupSuccess(response));
+      })
+      .catch(error => {
+        dispatch(actions.createPromoGroupFailure(error));
+      });
+  };
+}
+
 export default {
   fetchPromoGroups,
   updateSelectedPromoGroup,
-  updateAllSelectedPromoGroup
+  updateAllSelectedPromoGroup,
+  createPromoGroup
 };

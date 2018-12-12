@@ -15,6 +15,24 @@ export const fakeFetchPromoGroups = page => {
   });
 };
 
+export const fakeCreatePromoGroups = post => {
+  let datas = JSON.parse(localStorage.getItem("PromoGroups"));
+  let newData = {
+    ...post,
+    id: datas[datas.length - 1].id + 1
+  };
+  datas.push(newData);
+  localStorage.setItem("PromoGroups", JSON.stringify(datas));
+  const response = {
+    data: newData
+  };
+  console.log(response);
+  return new Promise(resolve => {
+    setTimeout(() => resolve(response), 1000);
+  });
+};
+
 export default {
-  fakeFetchPromoGroups
+  fakeFetchPromoGroups,
+  fakeCreatePromoGroups
 };

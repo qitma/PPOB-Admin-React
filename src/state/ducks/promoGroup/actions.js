@@ -33,10 +33,33 @@ export const allSelectedPromoGroup = () => {
   };
 };
 
+export const createPromoGroupStart = () => {
+  return {
+    type: types.CREATE_PROMO_GROUP
+  };
+};
+
+export const createPromoGroupSuccess = promoGroup => {
+  return {
+    type: types.CREATE_PROMO_GROUP_SUCCESS,
+    payload: promoGroup
+  };
+};
+
+export const createPromoGroupFailure = error => {
+  return {
+    type: types.CREATE_PROMO_GROUP_FAILURE,
+    payload: error
+  };
+};
+
 export default {
   fetchPromoGroupStart,
   fetchPromoGroupSuccess,
   fetchPromoGroupFailure,
   selectedPromoGroup,
-  allSelectedPromoGroup
+  allSelectedPromoGroup,
+  createPromoGroupStart,
+  createPromoGroupSuccess,
+  createPromoGroupFailure
 };
